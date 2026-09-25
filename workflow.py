@@ -35,7 +35,7 @@ from prompts import (
     REFINEMENT_USER,
 )
 
-MODEL = "openai/gpt-oss-120b"
+MODEL = "openai/gpt-oss-20b"
 MAX_RETRIES = 3
 
 
