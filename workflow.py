@@ -151,6 +151,64 @@ def content_summary(content_output: Dict[str, Any]) -> Dict[str, Any]:
     return summary
 
 
+def summarize_text(value: Any, max_chars: int = 180) -> str:
+    text = str(value or "").strip()
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip() + "..."
+
+
+def assessment_content_summary(content_output: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(content_output, dict):
+        return {}
+
+    study_notes = content_output.get("study_notes", [])
+    compact_notes = []
+
+    for note in study_notes[:12]:
+        if not isinstance(note, dict):
+            continue
+
+        compact_notes.append(
+            {
+                "concept": note.get("concept", ""),
+                "explanation": summarize_text(note.get("explanation", ""), 240),
+                "key_points": [
+                    summarize_text(point, 90)
+                    for point in (note.get("key_points", [])[:4])
+                ],
+                "common_confusion": summarize_text(
+                    note.get("common_confusion", ""),
+                    120,
+                ),
+            }
+        )
+
+    strategy = content_output.get("study_strategy", [])
+    compact_strategy = [
+        summarize_text(item, 110)
+        for item in strategy[:4]
+    ]
+
+    connections = content_output.get("concept_connections", [])
+    compact_connections = []
+    for item in connections[:6]:
+        if isinstance(item, dict):
+            compact_connections.append(
+                {
+                    "from_concept": item.get("from_concept", ""),
+                    "to_concept": item.get("to_concept", ""),
+                    "connection": summarize_text(item.get("connection", ""), 120),
+                }
+            )
+
+    return {
+        "study_notes": compact_notes,
+        "concept_connections": compact_connections,
+        "study_strategy": compact_strategy,
+    }
+
+
 def assessment_summary(assessment_output: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(assessment_output, dict):
         return {}
@@ -185,7 +243,7 @@ def build_assessment_context(
     return {
         "student_context": student_context,
         "planning_summary": planning_summary(planning_output),
-        "content_summary": content_summary(content_output),
+        "content_summary": assessment_content_summary(content_output),
     }
 
 
