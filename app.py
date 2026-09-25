@@ -76,7 +76,7 @@ STAGES = [
         "planning",
         "1. 🧭 Planning Agent",
         "Creates learning objectives, priority topics, concept sequence, "
-        "study schedule and 10-question quiz blueprint."
+        "study schedule and quiz blueprint."
     ),
     (
         "content",
@@ -87,8 +87,8 @@ STAGES = [
     (
         "assessment",
         "3. 📝 Assessment Agent",
-        "Creates 10 important concept-based MCQs with answers, "
-        "explanations, difficulty and concept coverage."
+        "Creates the configured number of concept-based MCQs with "
+        "answers, explanations, difficulty and concept coverage."
     ),
     (
         "review",
@@ -196,6 +196,14 @@ with input_col:
         placeholder="e.g. University exam preparation",
     )
 
+    mcq_count = st.number_input(
+        "🔢 Number of MCQs",
+        min_value=5,
+        max_value=30,
+        value=10,
+        step=1,
+    )
+
     generate = st.button(
         "🚀 Generate Study Pack",
         type="primary",
@@ -239,6 +247,7 @@ if generate:
             "daily_study_time": study_time.strip(),
             "exam_date": exam_date.strip(),
             "main_goal": goal.strip(),
+            "mcq_count": int(mcq_count),
         }
 
         status_placeholder = st.empty()
@@ -606,12 +615,12 @@ if context and context.get("final_pack"):
     # MCQ Quiz
     # --------------------------------------------------------
 
-    st.subheader("📝 10-Question MCQ Quiz")
-
     mcqs = pack.get(
         "mcq_quiz",
         [],
     )
+
+    st.subheader(f"📝 {len(mcqs)}-Question MCQ Quiz")
 
     selected_answers = {}
 
