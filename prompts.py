@@ -40,7 +40,7 @@ Create a personalized study blueprint for this learner:
 
 Return exactly this structure:
 
-{
+{{
   "study_goal": "clear personalized goal",
 
   "learning_objectives": [
@@ -52,24 +52,24 @@ Return exactly this structure:
   ],
 
   "priority_topics": [
-    {
+    {{
       "concept": "concept name",
       "priority": "High/Medium/Low",
       "reason": "why this concept matters"
-    }
+    }}
   ],
 
   "concept_sequence": [
-    {
+    {{
       "order": 1,
       "concept": "concept",
       "depends_on": [],
       "reason": "why it comes here"
-    }
+    }}
   ],
 
   "study_schedule": [
-    {
+    {{
       "period": "Day 1 / Week 1",
       "focus": "main focus",
       "concepts": [],
@@ -77,24 +77,24 @@ Return exactly this structure:
       "practice_tasks": [],
       "revision_task": "what to revise",
       "estimated_time": "time"
-    }
+    }}
   ],
 
-  "quiz_blueprint": {
+  "quiz_blueprint": {{
     "question_count": 10,
-    "difficulty_distribution": {
+    "difficulty_distribution": {{
       "easy": 3,
       "medium": 5,
       "hard": 2
-    },
+    }},
     "coverage_plan": [
-      {
+      {{
         "concept": "concept",
         "questions": 2,
         "importance": "High"
-      }
+      }}
     ]
-  },
+  }},
 
   "exam_focus": [
     "high-value exam focus"
@@ -103,7 +103,7 @@ Return exactly this structure:
   "planning_notes": [
     "important planning decision"
   ]
-}
+}}
 
 Rules:
 - The schedule MUST fit the exact duration and daily study time.
@@ -156,28 +156,28 @@ PLANNING OUTPUT:
 
 Return:
 
-{
+{{
   "study_notes": [
-    {
+    {{
       "concept": "concept name",
       "explanation": "clear and complete explanation",
       "key_points": [
         "important point"
       ],
-      "example": {
+      "example": {{
         "scenario": "realistic example or situation",
         "walkthrough": "step-by-step explanation of the example"
-      },
+      }},
       "common_confusion": "what students commonly misunderstand"
-    }
+    }}
   ],
 
   "concept_connections": [
-    {
+    {{
       "from_concept": "concept",
       "to_concept": "concept",
       "connection": "how they are related"
-    }
+    }}
   ],
 
   "study_strategy": [
@@ -185,20 +185,20 @@ Return:
   ],
 
   "flashcards": [
-    {
+    {{
       "question": "focused question",
       "answer": "accurate concise answer",
       "concept": "concept"
-    }
+    }}
   ],
 
   "practice_questions": [
-    {
+    {{
       "question": "question",
       "answer": "model answer",
       "difficulty": "Easy/Medium/Hard",
       "concept": "concept"
-    }
+    }}
   ],
 
   "exam_tips": [
@@ -208,7 +208,7 @@ Return:
   "common_mistakes": [
     "specific mistake students make"
   ]
-}
+}}
 
 Quality rules:
 - Explain concepts, do not merely define them.
@@ -263,9 +263,9 @@ GENERATED CONTENT:
 
 Return exactly:
 
-{
+{{
   "mcq_quiz": [
-    {
+    {{
       "question": "question",
       "options": [
         "A",
@@ -278,19 +278,19 @@ Return exactly:
       "difficulty": "Easy/Medium/Hard",
       "concept_coverage": "specific concept",
       "importance": "High/Medium/Low"
-    }
+    }}
   ],
 
-  "assessment_summary": {
+  "assessment_summary": {{
     "total_questions": 10,
     "concepts_covered": [],
-    "difficulty_distribution": {
+    "difficulty_distribution": {{
       "easy": 0,
       "medium": 0,
       "hard": 0
-    }
-  }
-}
+    }}
+  }}
+}}
 
 Rules:
 - Generate exactly 10 MCQs.
@@ -383,23 +383,23 @@ ASSESSMENT OUTPUT:
 
 Return:
 
-{
+{{
   "overall_status": "PASS/NEEDS_REFINEMENT",
 
-  "content_accuracy": {
+  "content_accuracy": {{
     "status": "PASS/FAIL",
     "issues": []
-  },
+  }},
 
-  "level_appropriateness": {
+  "level_appropriateness": {{
     "status": "PASS/FAIL",
     "issues": []
-  },
+  }},
 
-  "objective_alignment": {
+  "objective_alignment": {{
     "status": "PASS/FAIL",
     "issues": []
-  },
+  }},
 
   "missing_important_concepts": [],
 
@@ -412,25 +412,25 @@ Return:
   "revision_issues": [],
 
   "flashcard_issues": [
-    {
+    {{
       "issue_type": "Duplicate/Weak/Other",
       "item": "description",
       "fix": "specific fix"
-    }
+    }}
   ],
 
   "mcq_issues": [
-    {
+    {{
       "question_number": 1,
       "issue_type": "Invalid/Two Correct Answers/Wrong Answer/Ambiguous/Duplicate/Other",
       "issue": "specific issue",
       "fix": "specific correction"
-    }
+    }}
   ],
 
   "contradictions": [],
 
-  "quality_checks": {
+  "quality_checks": {{
     "content_accurate": true,
     "level_appropriate": true,
     "objectives_followed": true,
@@ -442,12 +442,12 @@ Return:
     "not_unnecessarily_difficult": true,
     "revision_present": true,
     "no_duplicate_flashcards": true
-  },
+  }},
 
   "refinement_instructions": [
     "specific instruction for the final agent"
   ]
-}
+}}
 
 Be strict. If something is uncertain or weak, report it.
 """
@@ -506,7 +506,7 @@ QUALITY REVIEW:
 
 Return:
 
-{
+{{
   "title": "personalized title",
   "overview": "short personalized overview",
 
@@ -514,33 +514,33 @@ Return:
   "prerequisites": [],
 
   "priority_topics": [
-    {
+    {{
       "concept": "concept",
       "priority": "High/Medium/Low",
       "reason": "reason"
-    }
+    }}
   ],
 
   "concept_sequence": [
-    {
+    {{
       "order": 1,
       "concept": "concept",
       "depends_on": [],
       "reason": "reason"
-    }
+    }}
   ],
 
   "study_notes": [
-    {
+    {{
       "concept": "concept",
       "explanation": "high-quality explanation",
       "key_points": [],
-      "example": {
+      "example": {{
         "scenario": "example",
         "walkthrough": "step-by-step example"
-      },
+      }},
       "common_confusion": "common confusion"
-    }
+    }}
   ],
 
   "concept_connections": [],
@@ -548,7 +548,7 @@ Return:
   "study_strategy": [],
 
   "study_schedule": [
-    {
+    {{
       "period": "Day 1 / Week 1",
       "focus": "focus",
       "concepts": [],
@@ -556,19 +556,19 @@ Return:
       "practice_tasks": [],
       "revision_task": "revision",
       "estimated_time": "time"
-    }
+    }}
   ],
 
   "flashcards": [
-    {
+    {{
       "question": "question",
       "answer": "answer",
       "concept": "concept"
-    }
+    }}
   ],
 
   "mcq_quiz": [
-    {
+    {{
       "question": "question",
       "options": ["A", "B", "C", "D"],
       "correct_answer": "exact option",
@@ -576,27 +576,27 @@ Return:
       "difficulty": "Easy/Medium/Hard",
       "concept_coverage": "concept",
       "importance": "High/Medium/Low"
-    }
+    }}
   ],
 
   "practice_questions": [
-    {
+    {{
       "question": "question",
       "answer": "answer",
       "difficulty": "Easy/Medium/Hard",
       "concept": "concept"
-    }
+    }}
   ],
 
   "exam_tips": [],
   "common_mistakes": [],
   "final_revision_checklist": [],
 
-  "final_task": {
+  "final_task": {{
     "title": "final task title",
     "instructions": "final task instructions"
-  }
-}
+  }}
+}}
 
 Final validation before returning:
 - exactly 10 MCQs
