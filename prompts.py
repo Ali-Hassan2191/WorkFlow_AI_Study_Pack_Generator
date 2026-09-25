@@ -26,7 +26,7 @@ You must:
 3. Arrange concepts in a logical prerequisite-aware concept sequence.
 4. Create a realistic study schedule that fits the available time.
 5. Define learning objectives that can actually be assessed.
-6. Decide what should be assessed with 10 quiz questions.
+6. Decide what should be assessed with a quiz that matches the learner's requested count.
 7. Prioritize foundational, important and commonly assessed concepts.
 8. Avoid unnecessary topics that do not support the student's goal.
 
@@ -81,16 +81,16 @@ Return exactly this structure:
   ],
 
   "quiz_blueprint": {{
-    "question_count": 10,
+    "question_count": {mcq_count},
     "difficulty_distribution": {{
-      "easy": 3,
-      "medium": 5,
-      "hard": 2
+      "easy": 0,
+      "medium": 0,
+      "hard": 0
     }},
     "coverage_plan": [
       {{
         "concept": "concept",
-        "questions": 2,
+        "questions": 1,
         "importance": "High"
       }}
     ]
@@ -109,8 +109,8 @@ Rules:
 - The schedule MUST fit the exact duration and daily study time.
 - Do not create an unrealistic workload.
 - Concept sequence must follow prerequisites.
-- Quiz blueprint must contain exactly 10 questions.
-- Quiz coverage should favor high-priority concepts.
+- Quiz blueprint must contain exactly {mcq_count} questions.
+- Difficulty distribution must add up to {mcq_count} and favor high-priority concepts.
 - Learning objectives must connect directly to the planned concepts.
 - If an exam date is provided, make the schedule exam-oriented.
 """
@@ -230,8 +230,8 @@ ASSESSMENT_SYSTEM = """
 You are the Assessment Agent in a multi-stage AI Study Pack
 Generator.
 
-Your task is to create a strong 10-question MCQ quiz from the
-approved plan and generated content.
+Your task is to create a strong MCQ quiz from the approved plan and generated content.
+The quiz must contain exactly {mcq_count} questions.
 
 Questions should focus on important, high-priority and commonly
 assessed concepts. "Commonly assessed" means concepts that are
@@ -282,7 +282,7 @@ Return exactly:
   ],
 
   "assessment_summary": {{
-    "total_questions": 10,
+    "total_questions": {mcq_count},
     "concepts_covered": [],
     "difficulty_distribution": {{
       "easy": 0,
@@ -293,7 +293,7 @@ Return exactly:
 }}
 
 Rules:
-- Generate exactly 10 MCQs.
+- Generate exactly {mcq_count} MCQs.
 - Follow the planning agent's quiz blueprint.
 - Prefer high-priority and foundational concepts.
 - Questions must be answerable from the generated content.
@@ -480,7 +480,7 @@ You MUST:
 - ensure the study schedule fits the student's time
 - ensure the concept sequence is logical
 - maintain alignment with learning objectives
-- keep the quiz at exactly 10 questions
+- keep the quiz at exactly {mcq_count} questions
 - keep the final pack coherent and student-friendly
 
 Return JSON only.
@@ -599,7 +599,7 @@ Return:
 }}
 
 Final validation before returning:
-- exactly 10 MCQs
+- exactly {mcq_count} MCQs
 - exactly 4 options per MCQ
 - one correct answer per MCQ
 - correct answer exactly matches an option
